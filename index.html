@@ -122,11 +122,18 @@
     left: 0;
     color: var(--muted);
   }
+  .cta-row {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
   .cta {
     font-family: var(--serif);
     font-size: clamp(18px, 2.1vw, 22px);
     line-height: 1.5;
-    margin: 0 0 18px;
+    margin: 0;
+    flex: 1 1 300px;
     color: var(--ink);
   }
 
@@ -149,8 +156,8 @@
   }
   .btn:hover { background: transparent; color: #ffffff; }
   a.btn { padding: 14px 32px; }
-  /* push the CTA button to the right so it isn't stacked above the left-side Sign up button */
-  .content .btn { display: block; width: max-content; max-width: 100%; margin-left: auto; }
+  /* keep the CTA button on the same line as the lead-in text, pinned to the right */
+  .cta-row .btn { flex: 0 0 auto; }
 
   /* ── Footer: subscribe + inquiries ── */
   .footer {
@@ -266,8 +273,10 @@
           <li>Digital Development &amp; Comms</li>
         </ul>
 
-        <p class="cta">Explore how we can help your organization move forward.</p>
-        <a class="btn" href="https://arctouch.com/contact?utm_source=clutch.co&amp;utm_medium=referral_profile&amp;utm_campaign=listings&amp;utm_content=main+link" target="_blank" rel="noopener">Learn More</a>
+        <div class="cta-row">
+          <p class="cta">Explore how we can help your organization move forward.</p>
+          <a class="btn" href="https://arctouch.com/contact?utm_source=clutch.co&amp;utm_medium=referral_profile&amp;utm_campaign=listings&amp;utm_content=main+link" target="_blank" rel="noopener">Learn More</a>
+        </div>
       </div>
     </section>
 
