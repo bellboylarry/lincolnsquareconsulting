@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Working drafts / alternates — not part of the published coming-soon page
+/home.html
+/index-alt.html
+/index-alt2.html
+
+# Working photo libraries and generated prospect mockups
+/background photos /
+/background prospects/
+
+# Only the background actually used by index.html is published
+/assets/*
+!/assets/background.jpg

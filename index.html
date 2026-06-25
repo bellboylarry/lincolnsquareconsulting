@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Lincoln Square Consulting — New York Advisory Firm</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Lincoln Square Consulting — a New York City-based advisory firm helping global companies achieve optimal results." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..600&family=Inter:wght@300..600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #ffffff;
+    --body: rgba(255,255,255,0.88);
+    --muted: rgba(255,255,255,0.64);
+    --line: rgba(255,255,255,0.26);
+    --line-strong: rgba(255,255,255,0.55);
+    --serif: "Newsreader", "Times New Roman", serif;
+    --sans: "Inter", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; min-height: 100%; }
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background: #0b0e13;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+  }
+  /* Full-bleed skyline background with a lighter legibility scrim */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(120% 80% at 50% 40%, rgba(6,9,14,0.16) 0%, rgba(6,9,14,0) 62%),
+      linear-gradient(to bottom,
+        rgba(6,9,14,0.46) 0%,
+        rgba(6,9,14,0.26) 26%,
+        rgba(6,9,14,0.30) 52%,
+        rgba(6,9,14,0.44) 76%,
+        rgba(6,9,14,0.60) 100%),
+      url("assets/background.jpg") center / cover no-repeat;
+  }
+
+  .page {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    padding: 44px clamp(24px, 6vw, 80px);
+    /* subtle shadow keeps white type legible over the lighter, brighter photos */
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.34);
+  }
+
+  /* ── Hero ── */
+  .hero {
+    align-self: center;
+    text-align: center;
+    padding: 32px 0;
+  }
+  .hero h1 {
+    /* brand wordmark — uppercase Inter with wide tracking, one centered line */
+    font-family: var(--sans);
+    font-weight: 500;
+    text-transform: uppercase;
+    white-space: nowrap;
+    line-height: 1.1;
+    margin: 0;
+    font-size: clamp(18px, 3.4vw, 44px);
+    color: var(--ink);
+  }
+  .hero h1 span {
+    display: inline-block;
+    letter-spacing: 0.34em;
+    /* cancel the trailing letter-spacing so the wordmark optically centers */
+    margin-right: -0.34em;
+  }
+  .tagline {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(18px, 2.3vw, 24px);
+    line-height: 1.45;
+    color: var(--body);
+    margin: 16px auto 0;
+    max-width: 700px;
+  }
+
+  /* ── Body block (left aligned, like the brief) ── */
+  .content {
+    text-align: left;
+    margin: clamp(30px, 4.5vw, 50px) auto 0;
+    max-width: 720px;
+  }
+  .label {
+    font-family: var(--sans);
+    font-size: clamp(14px, 1.6vw, 16px);
+    font-weight: 500;
+    color: var(--ink);
+    margin: 0 0 14px;
+  }
+  .services {
+    list-style: none;
+    margin: 0 0 clamp(26px, 4vw, 38px);
+    padding: 0;
+    columns: 2;
+    column-gap: 44px;
+    font-family: var(--serif);
+    font-size: clamp(16px, 1.8vw, 19px);
+    line-height: 1.8;
+    color: var(--ink);
+  }
+  .services li {
+    break-inside: avoid;
+    position: relative;
+    padding-left: 22px;
+  }
+  .services li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+  }
+  .cta {
+    font-family: var(--serif);
+    font-size: clamp(18px, 2.1vw, 22px);
+    line-height: 1.5;
+    margin: 0 0 18px;
+    color: var(--ink);
+  }
+
+  /* ── Shared button (CTA + Sign up) ── */
+  .btn {
+    display: inline-block;
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 600;
+    white-space: nowrap;
+    text-decoration: none;
+    text-shadow: none;
+    cursor: pointer;
+    border: 1px solid #ffffff;
+    background: #ffffff;
+    color: #0b0e13;
+    transition: background 160ms ease, color 160ms ease;
+  }
+  .btn:hover { background: transparent; color: #ffffff; }
+  a.btn { padding: 14px 32px; }
+  /* push the CTA button to the right so it isn't stacked above the left-side Sign up button */
+  .content .btn { display: block; width: max-content; max-width: 100%; margin-left: auto; }
+
+  /* ── Footer: subscribe + inquiries ── */
+  .footer {
+    border-top: 1px solid var(--line);
+    padding-top: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+  .subscribe {
+    display: flex;
+    align-items: center;
+    gap: clamp(14px, 2.6vw, 28px);
+    flex: 1 1 420px;
+  }
+  .subscribe .sub-label {
+    font-family: var(--serif);
+    font-size: clamp(22px, 3vw, 32px);
+    line-height: 1.05;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  .form {
+    display: flex;
+    align-items: stretch;
+    flex: 1 1 auto;
+    max-width: 480px;
+  }
+  .form input {
+    flex: 1 1 auto;
+    min-width: 0;
+    border: 1px solid var(--line-strong);
+    border-right: none;
+    background: rgba(255,255,255,0.10);
+    padding: 0 16px;
+    height: 50px;
+    font-family: var(--sans);
+    font-size: 15px;
+    color: var(--ink);
+    text-shadow: none;
+    outline: none;
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+  .form input::placeholder { color: rgba(255,255,255,0.6); }
+  .form input:focus { border-color: var(--ink); background: rgba(255,255,255,0.16); }
+  .form .btn { flex: 0 0 auto; height: 50px; padding: 0 26px; border-left: none; }
+
+  .contact {
+    font-size: 15px;
+    color: var(--body);
+    text-align: right;
+    line-height: 1.7;
+    flex: 0 0 auto;
+  }
+  .contact .k {
+    display: block;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 3px;
+  }
+  .contact a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); }
+  .contact a:hover { border-color: var(--ink); }
+
+  .note {
+    margin-top: 12px;
+    font-size: 12.5px;
+    color: var(--muted);
+    min-height: 15px;
+    flex-basis: 100%;
+  }
+  .copyright {
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    flex-basis: 100%;
+    text-align: center;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    margin-top: 6px;
+  }
+
+  @media (max-width: 720px) {
+    .services { columns: 1; }
+    .footer { flex-direction: column; align-items: flex-start; }
+    .subscribe { flex-direction: column; align-items: flex-start; gap: 14px; width: 100%; flex: 0 0 auto; }
+    .form { max-width: none; width: 100%; }
+    .contact { text-align: left; }
+    .note { flex-basis: auto; }
+    .copyright { flex-basis: auto; }
+  }
+</style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <h1><span>Lincoln Square Consulting</span></h1>
+      <p class="tagline">A New York City-based advisory firm helping global companies achieve optimal results</p>
+
+      <div class="content">
+        <p class="label">Areas of consulting expertise:</p>
+        <ul class="services">
+          <li>Advisory Services</li>
+          <li>Strategy &amp; Operating Model</li>
+          <li>Technology Management</li>
+          <li>Exec Development</li>
+          <li>Workforce Optimization</li>
+          <li>Outsourcing &amp; Managed Services</li>
+          <li>Digital Development &amp; Comms</li>
+        </ul>
+
+        <p class="cta">Explore how we can help your organization move forward.</p>
+        <a class="btn" href="https://arctouch.com/contact?utm_source=clutch.co&amp;utm_medium=referral_profile&amp;utm_campaign=listings&amp;utm_content=main+link" target="_blank" rel="noopener">Learn More</a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="subscribe">
+        <div class="sub-label">Subscribe for Updates</div>
+        <form class="form" id="signup">
+          <input type="email" id="email" name="email" placeholder="Email address" required aria-label="Email address" />
+          <button class="btn" type="submit">Sign up</button>
+        </form>
+        <div class="note" id="note"></div>
+      </div>
+      <div class="contact">
+        <span class="k">Inquiries</span>
+        <a href="mailto:info@lincolnsquareconsulting.llc">info@lincolnsquareconsulting.llc</a>
+      </div>
+      <div class="copyright">Lincoln Square Consulting, LLC &copy;2026</div>
+    </footer>
+  </main>
+
+  <script>
+    (function () {
+      // TODO: Paste your Google Apps Script Web App URL here after deploying it.
+      // Until then the form acknowledges the visitor but does not store the email.
+      var SCRIPT_URL = '';
+
+      var form = document.getElementById('signup');
+      var input = document.getElementById('email');
+      var btn = form.querySelector('button');
+      var note = document.getElementById('note');
+
+      function onSuccess() {
+        form.classList.add('done');
+        input.value = '';
+        input.placeholder = "You're on the list";
+        btn.textContent = 'Sign up';
+        btn.disabled = false;
+        note.textContent = "Thanks — we'll be in touch when we launch.";
+      }
+
+      function onError() {
+        btn.textContent = 'Sign up';
+        btn.disabled = false;
+        note.textContent = 'Something went wrong — please try again.';
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var email = (input.value || '').trim();
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          note.textContent = 'Please enter a valid email address.';
+          input.focus();
+          return;
+        }
+
+        btn.disabled = true;
+        btn.textContent = 'Saving…';
+        note.textContent = '';
+
+        if (!SCRIPT_URL) {
+          onSuccess();
+          return;
+        }
+
+        fetch(SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain' },
+          body: JSON.stringify({ email: email, timestamp: new Date().toISOString() })
+        })
+        .then(onSuccess)
+        .catch(onError);
+      });
+    })();
+  </script>
+</body>
+</html>
