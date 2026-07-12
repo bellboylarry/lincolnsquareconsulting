@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Contact — Lincoln Square Consulting</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Tell Lincoln Square Consulting what you're working toward — we'll show you how we can help you get there." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300..700&family=Inter:wght@300..600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --night: #0b0e13;
+    --paper: #f4f0e8;
+    --paper-2: #ece5d7;
+    --ink: #17181a;
+    --muted: #6f6a5e;
+    --hair: #d8d1c2;
+    --bronze: #a08048;
+    --bronze-lite: #c9a869;
+    --white: #ffffff;
+    --serif: "Newsreader", Georgia, "Times New Roman", serif;
+    --sans: "Inter", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: var(--sans);
+    background: var(--paper);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+  }
+  a { color: inherit; }
+  .u { text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 1px; transition: opacity .25s ease; }
+  .u:hover { opacity: .6; }
+
+  /* ── header ────────────────────────────────────────────── */
+  .top {
+    display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    padding: 18px clamp(24px, 6vw, 96px);
+    border-bottom: 1px solid var(--hair);
+    background: var(--paper);
+  }
+  .top .mark {
+    display: inline-flex; align-items: center; gap: 14px;
+    font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 500;
+    text-decoration: none; white-space: nowrap;
+  }
+  .top .mark::before { content: ""; width: 7px; height: 7px; background: var(--bronze); flex-shrink: 0; }
+  .top .links { display: flex; gap: clamp(20px, 3vw, 40px); }
+  .top .links a {
+    font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+    text-decoration: none; opacity: .82; position: relative; padding-bottom: 3px;
+  }
+  .top .links a::after {
+    content: ""; position: absolute; left: 0; bottom: 0; width: 5px; height: 5px;
+    background: currentColor; opacity: 0; transition: opacity .25s ease;
+  }
+  .top .links a:hover { opacity: 1; }
+  .top .links a:hover::after { opacity: 1; }
+
+  /* ── page ──────────────────────────────────────────────── */
+  .page { padding: clamp(60px, 9vh, 110px) clamp(24px, 6vw, 96px) clamp(84px, 12vh, 140px); }
+  .wrap { max-width: 1180px; margin: 0 auto; }
+
+  .sechead {
+    border-top: 1px solid var(--hair);
+    padding-top: 16px;
+    margin: 0 0 clamp(30px, 4vw, 44px);
+    display: flex; justify-content: space-between; align-items: baseline; gap: 20px;
+  }
+  .sechead .lab { font-size: 12px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--muted); }
+  .sechead .sq { width: 7px; height: 7px; background: var(--bronze); }
+
+  h1 {
+    font-family: var(--serif); font-weight: 500; letter-spacing: -0.015em;
+    line-height: 1.06; margin: 0 0 14px; font-size: clamp(34px, 4.6vw, 58px);
+  }
+  .lead {
+    font-family: var(--serif); font-size: clamp(17px, 1.7vw, 20px); line-height: 1.65;
+    color: #45443f; max-width: 52ch; margin: 0 0 clamp(40px, 5vw, 60px);
+  }
+
+  .cols { display: grid; grid-template-columns: 1.35fr 1fr; gap: clamp(40px, 7vw, 110px); align-items: start; }
+
+  /* ── form ──────────────────────────────────────────────── */
+  .f-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px 28px; }
+  .field.wide { grid-column: 1 / -1; }
+  label {
+    display: flex; align-items: baseline; gap: 6px;
+    font-size: 11.5px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 10px;
+  }
+  label .req { color: var(--bronze); }
+  input[type="text"], input[type="email"], select, textarea {
+    width: 100%;
+    font-family: var(--serif); font-size: 17px; color: var(--ink);
+    background: transparent;
+    border: none; border-bottom: 1px solid var(--hair);
+    padding: 6px 2px 12px; outline: none; border-radius: 0;
+    transition: border-color .25s ease;
+    appearance: none; -webkit-appearance: none;
+  }
+  select { cursor: pointer; }
+  .selwrap { position: relative; }
+  .selwrap::after {
+    content: ""; position: absolute; right: 4px; top: 50%; transform: translateY(-70%) rotate(45deg);
+    width: 7px; height: 7px; border-right: 1.5px solid var(--muted); border-bottom: 1.5px solid var(--muted);
+    pointer-events: none;
+  }
+  textarea { resize: vertical; min-height: 120px; line-height: 1.6; }
+  input:focus, select:focus, textarea:focus { border-bottom-color: var(--ink); }
+  ::placeholder { color: #a39d8e; opacity: 1; }
+
+  .f-actions { grid-column: 1 / -1; display: flex; align-items: center; gap: 22px; margin-top: 8px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+    font-family: var(--sans); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600;
+    white-space: nowrap; cursor: pointer; text-decoration: none;
+    border: 1px solid var(--ink); background: var(--ink); color: var(--paper);
+    padding: 16px 36px;
+    transition: background .18s ease, color .18s ease;
+  }
+  .btn::after { content: ""; width: 5px; height: 5px; background: var(--bronze-lite); }
+  .btn:hover { background: transparent; color: var(--ink); }
+  .btn:hover::after { background: var(--bronze); }
+  .btn:disabled { opacity: .6; cursor: default; }
+  .f-note { font-size: 13px; color: var(--muted); min-height: 16px; }
+  .f-note a { color: var(--ink); }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+  /* success state */
+  .done { display: none; border-top: 1px solid var(--hair); padding-top: 34px; }
+  .done .sq { width: 9px; height: 9px; background: var(--bronze); margin-bottom: 22px; }
+  .done h2 { font-family: var(--serif); font-weight: 500; font-size: clamp(24px, 2.6vw, 34px); margin: 0 0 10px; letter-spacing: -0.01em; }
+  .done p { font-family: var(--serif); font-size: 17px; line-height: 1.65; color: #45443f; margin: 0; max-width: 44ch; }
+  .sent .done { display: block; }
+  .sent form { display: none; }
+
+  /* ── aside ─────────────────────────────────────────────── */
+  .aside { border-top: 1px solid var(--hair); padding-top: 26px; }
+  .aside .k { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 8px; }
+  .aside .v { font-family: var(--serif); font-size: 17px; line-height: 1.6; margin: 0 0 28px; }
+  .aside .v a { text-decoration: none; border-bottom: 1px solid var(--hair); }
+  .aside .v a:hover { border-color: var(--ink); }
+  .aside ul { list-style: none; margin: 0; padding: 0; font-family: var(--serif); font-size: 15.5px; line-height: 2; color: #45443f; }
+  .aside li { display: flex; align-items: baseline; gap: 12px; }
+  .aside li::before { content: ""; width: 5px; height: 5px; background: var(--bronze); flex-shrink: 0; transform: translateY(-2px); }
+
+  /* ── footer ────────────────────────────────────────────── */
+  .foot {
+    display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+    margin: clamp(60px, 9vw, 100px) auto 0; max-width: 1180px;
+    padding-top: 24px; border-top: 1px solid var(--hair);
+  }
+  .foot .cr { font-size: 12px; letter-spacing: 0.1em; color: var(--muted); }
+  .foot .em { font-size: 13px; color: var(--muted); }
+
+  @media (max-width: 900px) {
+    .cols { grid-template-columns: 1fr; }
+    .aside { order: 2; }
+  }
+  @media (max-width: 640px) {
+    .top .links { display: none; }
+    .f-grid { grid-template-columns: 1fr; }
+    .field.wide { grid-column: auto; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="top">
+    <a class="mark" href="index.html">Lincoln Square Consulting</a>
+    <nav class="links">
+      <a href="index.html#expertise">Expertise</a>
+      <a href="index.html#approach">Approach</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <div class="wrap">
+      <div class="sechead"><span class="lab">Inquiry</span><span class="sq"></span></div>
+      <h1>Tell us what you're working toward.</h1>
+      <p class="lead">Share a few details about your organization and the challenge in front of you. We'll come back to you with how Lincoln Square can help you get there.</p>
+
+      <div class="cols">
+        <div id="formzone">
+          <form id="inquiry" novalidate>
+            <div class="f-grid">
+              <div class="field">
+                <label for="name">Name <span class="req">*</span></label>
+                <input type="text" id="name" name="name" autocomplete="name" required />
+              </div>
+              <div class="field">
+                <label for="email">Email <span class="req">*</span></label>
+                <input type="email" id="email" name="email" autocomplete="email" required />
+              </div>
+              <div class="field">
+                <label for="company">Company</label>
+                <input type="text" id="company" name="company" autocomplete="organization" />
+              </div>
+              <div class="field">
+                <label for="area">Area of interest</label>
+                <div class="selwrap">
+                  <select id="area" name="area">
+                    <option value="General inquiry" selected>General inquiry</option>
+                    <option>Advisory Services</option>
+                    <option>Strategy &amp; Operating Model</option>
+                    <option>Technology Management</option>
+                    <option>Exec Development</option>
+                    <option>Workforce Optimization</option>
+                    <option>Outsourcing &amp; Managed Services</option>
+                    <option>Digital Development &amp; Comms</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field wide">
+                <label for="message">What are you working toward? <span class="req">*</span></label>
+                <textarea id="message" name="message" rows="5" placeholder="A sentence or two is plenty." required></textarea>
+              </div>
+              <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+              <div class="f-actions">
+                <button class="btn" type="submit">Send Inquiry</button>
+                <span class="f-note" id="fnote"></span>
+              </div>
+            </div>
+          </form>
+
+          <div class="done" id="done">
+            <div class="sq"></div>
+            <h2>Thank you — we've received your inquiry.</h2>
+            <p>We read every message and will come back to you shortly. If it's time-sensitive, email us directly at <a class="u" href="mailto:info@lincolnsquareconsulting.llc">info@lincolnsquareconsulting.llc</a>.</p>
+          </div>
+        </div>
+
+        <aside class="aside">
+          <span class="k">Inquiries</span>
+          <p class="v"><a href="mailto:info@lincolnsquareconsulting.llc">info@lincolnsquareconsulting.llc</a></p>
+          <span class="k">What to expect</span>
+          <ul>
+            <li>A reply from a senior member of the team</li>
+            <li>A short call to understand the problem</li>
+            <li>A clear point of view on how we'd help</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer class="foot">
+    <span class="em">Lincoln Square Consulting — New York City</span>
+    <span class="cr">Lincoln Square Consulting, LLC &copy;2026</span>
+  </footer>
+
+  <script>
+    (function () {
+      var ENDPOINT = 'https://formsubmit.co/ajax/info@lincolnsquareconsulting.llc';
+      var zone = document.getElementById('formzone');
+      var form = document.getElementById('inquiry');
+      var note = document.getElementById('fnote');
+      var btn = form.querySelector('button');
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var name = form.name.value.trim();
+        var email = form.email.value.trim();
+        var message = form.message.value.trim();
+        if (!name) { note.textContent = 'Please add your name.'; form.name.focus(); return; }
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { note.textContent = 'Please add a valid email address.'; form.email.focus(); return; }
+        if (!message) { note.textContent = 'Please tell us a little about what you need.'; form.message.focus(); return; }
+        if (form._honey.value) { return; }
+
+        btn.disabled = true; btn.textContent = 'Sending…'; note.textContent = '';
+        fetch(ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            _subject: 'New inquiry — lincolnsquareconsulting.llc',
+            _template: 'table',
+            name: name,
+            email: email,
+            company: form.company.value.trim(),
+            area: form.area.value,
+            message: message
+          })
+        })
+        .then(function (r) { if (!r.ok) { throw new Error('bad status'); } return r.json(); })
+        .then(function () { zone.classList.add('sent'); })
+        .catch(function () {
+          btn.disabled = false; btn.textContent = 'Send Inquiry';
+          note.innerHTML = 'Something went wrong — please email us at <a href="mailto:info@lincolnsquareconsulting.llc">info@lincolnsquareconsulting.llc</a>.';
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
