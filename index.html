@@ -4,351 +4,465 @@
 <meta charset="UTF-8" />
 <title>Lincoln Square Consulting — New York Advisory Firm</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="Lincoln Square Consulting — a New York City-based advisory firm helping global companies achieve optimal results." />
+<meta name="description" content="Lincoln Square Consulting — a New York City-based advisory firm helping global companies become stronger, more profitable, and ready for what comes next." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..600&family=Inter:wght@300..600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300..700&family=Inter:wght@300..600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ink: #ffffff;
-    --body: rgba(255,255,255,0.88);
-    --muted: rgba(255,255,255,0.64);
-    --line: rgba(255,255,255,0.26);
-    --line-strong: rgba(255,255,255,0.55);
-    --serif: "Newsreader", "Times New Roman", serif;
+    --night: #0b0e13;
+    --paper: #f4f0e8;
+    --paper-2: #ece5d7;
+    --ink: #17181a;
+    --muted: #6f6a5e;
+    --hair: #d8d1c2;
+    --hair-dk: rgba(255,255,255,0.18);
+    --bronze: #a08048;
+    --bronze-lite: #c9a869;
+    --white: #ffffff;
+    --serif: "Newsreader", Georgia, "Times New Roman", serif;
     --sans: "Inter", system-ui, sans-serif;
   }
   * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; min-height: 100%; }
+  html { scroll-behavior: smooth; }
   body {
+    margin: 0;
     font-family: var(--sans);
+    background: var(--paper);
     color: var(--ink);
-    background: #0b0e13;
     -webkit-font-smoothing: antialiased;
     -webkit-text-size-adjust: 100%;
   }
-  /* Full-bleed skyline background with a lighter legibility scrim */
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: -1;
+  a { color: inherit; }
+  .u { text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 1px; transition: opacity .25s ease; }
+  .u:hover { opacity: .6; }
+
+  /* ── shared chrome ─────────────────────────────────────── */
+  .section { padding: clamp(84px, 13vh, 148px) clamp(24px, 6vw, 96px); }
+  .wrap { max-width: 1180px; margin: 0 auto; }
+
+  /* document-style section head: rule, small-caps label, roman folio */
+  .sechead {
+    border-top: 1px solid var(--hair);
+    padding-top: 16px;
+    margin: 0 0 clamp(34px, 4.5vw, 52px);
+    display: flex; justify-content: space-between; align-items: baseline; gap: 20px;
+  }
+  .sechead .lab {
+    font-family: var(--sans);
+    font-size: 12px; letter-spacing: 0.26em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .sechead .folio { font-family: var(--serif); font-size: 16px; color: var(--bronze); }
+
+  h2.h {
+    font-family: var(--serif);
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    line-height: 1.06;
+    margin: 0;
+    font-size: clamp(32px, 4.4vw, 56px);
+  }
+
+  /* ── nav ───────────────────────────────────────────────── */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 70;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px clamp(24px, 6vw, 96px);
+    color: var(--white);
+    transition: background .45s ease, color .45s ease, padding .45s ease, border-color .45s ease;
+    border-bottom: 1px solid transparent;
+  }
+  .nav.scrolled {
+    background: rgba(244,240,232,0.92);
+    -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+    color: var(--ink);
+    padding: 14px clamp(24px, 6vw, 96px);
+    border-bottom-color: var(--hair);
+  }
+  .nav .mark {
+    display: inline-flex; align-items: center; gap: 14px;
+    font-family: var(--sans);
+    font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 500;
+    white-space: nowrap;
+  }
+  .nav .mark::before { content: ""; width: 7px; height: 7px; background: var(--bronze-lite); flex-shrink: 0; }
+  .nav.scrolled .mark::before { background: var(--bronze); }
+  .nav .links { display: flex; gap: clamp(20px, 3vw, 40px); }
+  .nav .links a {
+    font-family: var(--sans);
+    font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase;
+    text-decoration: none; opacity: .82;
+    position: relative; padding-bottom: 3px;
+  }
+  .nav .links a::after {
+    content: ""; position: absolute; left: 0; bottom: 0; width: 5px; height: 5px;
+    background: currentColor; opacity: 0; transition: opacity .25s ease;
+  }
+  .nav .links a:hover { opacity: 1; }
+  .nav .links a:hover::after { opacity: 1; }
+
+  /* ── hero ──────────────────────────────────────────────── */
+  .hero {
+    position: relative; overflow: hidden;
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center; color: var(--white);
+    padding: 120px clamp(24px, 6vw, 80px) 96px;
+  }
+  .hero::before {
+    content: ""; position: absolute; inset: 0; z-index: 0;
     background:
-      radial-gradient(120% 88% at 50% 33%, rgba(6,9,14,0.26) 0%, rgba(6,9,14,0) 60%),
+      radial-gradient(120% 88% at 50% 33%, rgba(6,9,14,0.30) 0%, rgba(6,9,14,0) 60%),
       linear-gradient(to bottom,
-        rgba(6,9,14,0.50) 0%,
-        rgba(6,9,14,0.37) 24%,
-        rgba(6,9,14,0.32) 52%,
-        rgba(6,9,14,0.46) 76%,
-        rgba(6,9,14,0.62) 100%),
+        rgba(6,9,14,0.52) 0%, rgba(6,9,14,0.36) 26%,
+        rgba(6,9,14,0.34) 55%, rgba(6,9,14,0.52) 100%),
       url("assets/background.jpg") center / cover no-repeat;
   }
-
-  .page {
-    min-height: 100vh;
-    display: grid;
-    grid-template-rows: 1fr auto;
-    padding: 44px clamp(24px, 6vw, 80px);
-    /* subtle shadow keeps white type legible over the lighter, brighter photos */
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.34);
+  .hero > * { position: relative; z-index: 1; text-shadow: 0 1px 3px rgba(0,0,0,0.32); }
+  .hero .kicker {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: var(--sans); font-size: 12px; letter-spacing: 0.34em; text-transform: uppercase;
+    color: rgba(255,255,255,0.74); margin: 0 0 26px;
   }
-
-  /* ── Hero ── */
-  .hero {
-    align-self: center;
-    text-align: center;
-    padding: 32px 0;
-  }
+  .hero .kicker::before, .hero .kicker::after { content: ""; width: 5px; height: 5px; background: var(--bronze-lite); }
   .hero h1 {
-    /* brand wordmark — uppercase Inter with wide tracking, one centered line */
-    font-family: var(--sans);
-    font-weight: 500;
-    text-transform: uppercase;
-    white-space: nowrap;
-    line-height: 1.1;
-    margin: 0;
-    font-size: clamp(18px, 3.4vw, 44px);
-    color: var(--ink);
+    font-family: var(--sans); font-weight: 500; text-transform: uppercase;
+    white-space: nowrap; line-height: 1.1; margin: 0;
+    font-size: clamp(13px, 3.4vw, 46px); color: var(--white);
   }
-  .hero h1 span {
-    display: inline-block;
-    letter-spacing: 0.34em;
-    /* cancel the trailing letter-spacing so the wordmark optically centers */
-    margin-right: -0.34em;
+  .hero h1 span { display: inline-block; letter-spacing: 0.34em; margin-right: -0.34em; }
+  .hero .tagline {
+    font-family: var(--serif); font-weight: 400;
+    font-size: clamp(18px, 2.3vw, 24px); line-height: 1.5;
+    color: rgba(255,255,255,0.9); max-width: 640px; margin: 22px auto 0;
   }
-  .tagline {
-    font-family: var(--serif);
-    font-style: italic;
-    font-weight: 400;
-    font-size: clamp(18px, 2.3vw, 24px);
-    line-height: 1.45;
-    color: var(--body);
-    margin: 16px auto 0;
-    max-width: 700px;
+  .scrollcue {
+    position: absolute; left: 50%; bottom: 34px; transform: translateX(-50%);
+    z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 12px;
+    font-family: var(--sans); font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+  }
+  .scrollcue .line { position: relative; width: 1px; height: 46px; background: rgba(255,255,255,0.35); }
+  .scrollcue .line::after {
+    content: ""; position: absolute; top: 0; left: -2px; width: 5px; height: 5px; background: var(--bronze-lite);
+    animation: drop 2.6s cubic-bezier(.6,.05,.4,.95) infinite;
+  }
+  @keyframes drop { 0% { transform: translateY(0); opacity: 0; } 18% { opacity: 1; } 82% { opacity: 1; } 100% { transform: translateY(41px); opacity: 0; } }
+
+  /* ── statement ─────────────────────────────────────────── */
+  .statement { background: var(--paper); }
+  .statement .grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(30px, 6vw, 80px); align-items: end; }
+  .statement .big {
+    font-family: var(--serif); font-weight: 400; letter-spacing: -0.015em;
+    font-size: clamp(28px, 4vw, 50px); line-height: 1.16; margin: 0; max-width: 20ch;
+  }
+  .statement .big strong { font-weight: 600; }
+  .statement .sub {
+    font-family: var(--serif); font-size: clamp(17px, 1.7vw, 20px); line-height: 1.7;
+    color: #45443f; max-width: 46ch; margin: 0;
   }
 
-  /* ── Body block (left aligned, like the brief) ── */
-  .content {
-    text-align: left;
-    margin: clamp(30px, 4.5vw, 50px) auto 0;
-    max-width: 720px;
-  }
-  .label {
-    font-family: var(--sans);
-    font-size: clamp(14px, 1.6vw, 16px);
-    font-weight: 500;
-    color: var(--ink);
-    margin: 0 0 14px;
-  }
-  .services {
-    list-style: none;
-    margin: 0 0 clamp(26px, 4vw, 38px);
-    padding: 0;
-    columns: 2;
-    column-gap: 44px;
-    font-family: var(--serif);
-    font-size: clamp(16px, 1.8vw, 19px);
-    line-height: 1.8;
-    color: var(--ink);
-  }
-  .services li {
-    break-inside: avoid;
-    position: relative;
-    padding-left: 22px;
-  }
-  .services li::before {
-    content: "—";
-    position: absolute;
-    left: 0;
-    color: var(--muted);
-  }
-  .cta-row {
-    display: flex;
+  /* ── expertise ledger ──────────────────────────────────── */
+  .services-sec { background: var(--paper); }
+  .services-sec .head { display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; flex-wrap: wrap; margin-bottom: clamp(38px, 5vw, 58px); }
+  .services-sec .head p { font-family: var(--serif); color: var(--muted); max-width: 34ch; margin: 12px 0 0; font-size: 16px; line-height: 1.6; }
+
+  .ledger { border-top: 1px solid var(--hair); }
+  .row {
+    display: grid;
+    grid-template-columns: 64px 72px 1fr 1.15fr;
     align-items: center;
-    gap: 24px;
-    flex-wrap: wrap;
+    gap: 0 clamp(18px, 3vw, 40px);
+    padding: 26px 0;
+    border-bottom: 1px solid var(--hair);
+    transition: background .3s ease;
   }
-  .cta {
-    font-family: var(--serif);
-    font-size: clamp(18px, 2.1vw, 22px);
-    line-height: 1.5;
-    margin: 0;
-    flex: 1 1 300px;
-    color: var(--ink);
-  }
+  .row:hover { background: rgba(23,24,26,0.028); }
+  .r-num { font-family: var(--sans); font-size: 12px; letter-spacing: 0.14em; color: var(--muted); }
+  .r-mark { color: var(--bronze); line-height: 0; transition: color .3s ease, transform .3s ease; }
+  .row:hover .r-mark { color: var(--ink); transform: translateY(-1px); }
+  .r-mark svg { width: 30px; height: 30px; }
+  .r-mark rect[data-o] { fill: none; stroke: currentColor; stroke-width: 1.5; }
+  .r-name { font-family: var(--serif); font-weight: 500; font-size: clamp(19px, 1.9vw, 24px); letter-spacing: -0.01em; margin: 0; }
+  .r-desc { font-family: var(--serif); font-size: 15.5px; line-height: 1.6; color: var(--muted); margin: 0; }
 
-  /* ── Shared button (CTA + Sign up) ── */
+  /* ── approach ──────────────────────────────────────────── */
+  .approach { background: var(--paper-2); }
+  .approach .sechead { border-top-color: #cfc6b3; }
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: clamp(40px, 5vw, 58px); border-top: 1px solid #cfc6b3; }
+  .step { padding: 30px 28px 6px 0; }
+  .step + .step { border-left: 1px solid #cfc6b3; padding-left: 28px; }
+  .step .n { font-family: var(--serif); font-weight: 500; font-size: clamp(34px, 3vw, 44px); line-height: 1; color: var(--bronze); display: block; margin-bottom: 20px; }
+  .step h4 { font-family: var(--serif); font-weight: 500; font-size: clamp(20px, 1.9vw, 24px); margin: 0 0 10px; letter-spacing: -0.01em; }
+  .step p { font-family: var(--serif); font-size: 15px; line-height: 1.64; color: #56534c; margin: 0; max-width: 30ch; }
+
+  /* ── contact ───────────────────────────────────────────── */
+  .contact-sec { position: relative; overflow: hidden; color: var(--white); }
+  .contact-sec::before {
+    content: ""; position: absolute; inset: 0; z-index: 0;
+    background:
+      linear-gradient(to bottom, rgba(6,9,14,0.82) 0%, rgba(6,9,14,0.9) 100%),
+      url("assets/background.jpg") center / cover no-repeat;
+  }
+  .contact-sec .wrap { position: relative; z-index: 1; }
+  .contact-sec .sechead { border-top-color: var(--hair-dk); }
+  .contact-sec .sechead .lab { color: rgba(255,255,255,0.62); }
+  .contact-sec .sechead .folio { color: var(--bronze-lite); }
+  .contact-sec .big {
+    font-family: var(--serif); font-weight: 500; font-size: clamp(34px, 5vw, 58px);
+    line-height: 1.05; letter-spacing: -0.02em; margin: 0 0 14px; max-width: 18ch;
+  }
+  .contact-sec .lead { font-family: var(--serif); font-size: clamp(17px, 1.7vw, 20px); color: rgba(255,255,255,0.84); max-width: 46ch; margin: 0 0 44px; line-height: 1.6; }
+
   .btn {
-    display: inline-block;
-    font-family: var(--sans);
-    font-size: 12px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    font-weight: 600;
-    white-space: nowrap;
-    text-decoration: none;
-    text-shadow: none;
-    cursor: pointer;
-    border: 1px solid #ffffff;
-    background: #ffffff;
-    color: #0b0e13;
-    transition: background 160ms ease, color 160ms ease;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-family: var(--sans); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600;
+    white-space: nowrap; text-decoration: none; cursor: pointer;
+    border: 1px solid var(--white); background: var(--white); color: var(--night);
+    transition: background .18s ease, color .18s ease;
   }
-  .btn:hover { background: transparent; color: #ffffff; }
-  a.btn { padding: 14px 32px; }
-  /* keep the CTA button on the same line as the lead-in text, pinned to the right */
-  .cta-row .btn { flex: 0 0 auto; }
+  .btn:hover { background: transparent; color: var(--white); }
+  a.btn.ghost { background: transparent; color: var(--white); padding: 15px 34px; }
+  a.btn.ghost:hover { background: var(--white); color: var(--night); }
 
-  /* ── Footer: subscribe + inquiries ── */
-  .footer {
-    border-top: 1px solid var(--line);
-    padding-top: 26px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 28px;
-    flex-wrap: wrap;
-  }
-  .subscribe {
-    display: flex;
-    align-items: center;
-    gap: clamp(14px, 2.6vw, 28px);
-    flex: 1 1 420px;
-  }
-  .subscribe .sub-label {
-    font-family: var(--serif);
-    font-size: clamp(22px, 3vw, 32px);
-    line-height: 1.05;
-    color: var(--ink);
-    white-space: nowrap;
-  }
-  .form {
-    display: flex;
-    align-items: stretch;
-    flex: 1 1 auto;
-    max-width: 480px;
-  }
+  .subscribe-row { display: flex; align-items: center; justify-content: space-between; gap: 36px; flex-wrap: wrap;
+    margin-top: 52px; padding-top: 34px; border-top: 1px solid var(--hair-dk); }
+  .subscribe { display: flex; align-items: center; gap: clamp(16px, 2.5vw, 30px); flex: 1 1 440px; }
+  .subscribe .sub-label { font-family: var(--serif); font-size: clamp(22px, 2.6vw, 30px); color: var(--white); white-space: nowrap; }
+  .form { display: flex; align-items: stretch; flex: 1 1 auto; max-width: 460px; }
   .form input {
-    flex: 1 1 auto;
-    min-width: 0;
-    border: 1px solid var(--line-strong);
-    border-right: none;
-    background: rgba(255,255,255,0.10);
-    padding: 0 16px;
-    height: 50px;
-    font-family: var(--sans);
-    font-size: 15px;
-    color: var(--ink);
-    text-shadow: none;
-    outline: none;
-    -webkit-backdrop-filter: blur(6px);
-    backdrop-filter: blur(6px);
+    flex: 1 1 auto; min-width: 0; height: 52px; padding: 0 16px;
+    border: 1px solid rgba(255,255,255,0.5); border-right: none;
+    background: rgba(255,255,255,0.08); color: var(--white); font-family: var(--sans); font-size: 15px; outline: none;
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
   }
   .form input::placeholder { color: rgba(255,255,255,0.6); }
-  .form input:focus { border-color: var(--ink); background: rgba(255,255,255,0.16); }
-  .form .btn { flex: 0 0 auto; height: 50px; padding: 0 26px; border-left: none; }
+  .form input:focus { border-color: var(--white); background: rgba(255,255,255,0.14); }
+  .form .btn { height: 52px; padding: 0 26px; }
+  .note { font-family: var(--sans); font-size: 12.5px; color: rgba(255,255,255,0.7); min-height: 15px; margin-top: 12px; flex-basis: 100%; }
 
-  .contact {
-    font-size: 15px;
-    color: var(--body);
-    text-align: right;
-    line-height: 1.7;
-    flex: 0 0 auto;
-  }
-  .contact .k {
-    display: block;
-    font-size: 12px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 3px;
-  }
-  .contact a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); }
-  .contact a:hover { border-color: var(--ink); }
+  .foot { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+    margin-top: 56px; padding-top: 26px; border-top: 1px solid var(--hair-dk); }
+  .foot .inq { font-family: var(--sans); font-size: 14px; color: rgba(255,255,255,0.78); }
+  .foot .inq .k { display: block; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 4px; }
+  .foot .cr { font-family: var(--sans); font-size: 12px; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); }
 
-  .note {
-    margin-top: 12px;
-    font-size: 12.5px;
-    color: var(--muted);
-    min-height: 15px;
-    flex-basis: 100%;
-  }
-  .copyright {
-    font-size: 13px;
-    letter-spacing: 0.12em;
-    color: var(--muted);
-    flex-basis: 100%;
-    text-align: center;
-    padding-top: 14px;
-    border-top: 1px solid var(--line);
-    margin-top: 6px;
-  }
+  /* ── reveal on scroll ──────────────────────────────────── */
+  [data-reveal] { opacity: 0; transform: translateY(16px); transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); transition-delay: var(--d, 0ms); }
+  [data-reveal].is-visible { opacity: 1; transform: none; }
 
-  @media (max-width: 720px) {
-    .services { columns: 1; }
-    .footer { flex-direction: column; align-items: flex-start; }
-    .subscribe { flex-direction: column; align-items: flex-start; gap: 14px; width: 100%; flex: 0 0 auto; }
+  /* ── responsive ────────────────────────────────────────── */
+  @media (max-width: 960px) {
+    .row { grid-template-columns: 52px 1fr 1.15fr; }
+    .r-num { display: none; }
+  }
+  @media (max-width: 860px) {
+    .statement .grid { grid-template-columns: 1fr; align-items: start; }
+    .steps { grid-template-columns: 1fr 1fr; border-top: none; }
+    .step { border-top: 1px solid #cfc6b3; padding: 26px 20px 6px 0; }
+    .step + .step { border-left: none; padding-left: 0; }
+    .step:nth-child(even) { border-left: 1px solid #cfc6b3; padding-left: 20px; }
+  }
+  @media (max-width: 640px) {
+    .nav .links { display: none; }
+    .row { grid-template-columns: 44px 1fr; row-gap: 6px; }
+    .r-desc { grid-column: 2; }
+    .steps { grid-template-columns: 1fr; }
+    .step:nth-child(even) { border-left: none; padding-left: 0; }
+    .subscribe { flex-direction: column; align-items: flex-start; gap: 14px; flex-basis: auto; width: 100%; }
     .form { max-width: none; width: 100%; }
-    .contact { text-align: left; }
-    .note { flex-basis: auto; }
-    .copyright { flex-basis: auto; }
+    .foot { flex-direction: column; align-items: flex-start; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    [data-reveal] { transition: none; opacity: 1; transform: none; }
+    .scrollcue .line::after { animation: none; }
   }
 </style>
 </head>
 <body>
-  <main class="page">
-    <section class="hero">
-      <h1><span>Lincoln Square Consulting</span></h1>
-      <p class="tagline">A New York City-based advisory firm helping global companies achieve optimal results</p>
 
-      <div class="content">
-        <p class="label">Areas of consulting expertise:</p>
-        <ul class="services">
-          <li>Advisory Services</li>
-          <li>Strategy &amp; Operating Model</li>
-          <li>Technology Management</li>
-          <li>Exec Development</li>
-          <li>Workforce Optimization</li>
-          <li>Outsourcing &amp; Managed Services</li>
-          <li>Digital Development &amp; Comms</li>
-        </ul>
+  <header class="nav" id="nav">
+    <span class="mark">Lincoln Square Consulting</span>
+    <nav class="links">
+      <a href="#expertise">Expertise</a>
+      <a href="#approach">Approach</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-        <div class="cta-row">
-          <p class="cta">Explore how we can help your organization move forward.</p>
-          <a class="btn" href="https://arctouch.com/contact?utm_source=clutch.co&amp;utm_medium=referral_profile&amp;utm_campaign=listings&amp;utm_content=main+link" target="_blank" rel="noopener">Learn More</a>
+  <!-- ── Hero ───────────────────────────────────────────── -->
+  <section class="hero">
+    <p class="kicker">New York City</p>
+    <h1><span>Lincoln Square Consulting</span></h1>
+    <p class="tagline">A New York City–based advisory firm helping global companies achieve optimal results</p>
+    <div class="scrollcue"><span>Scroll</span><span class="line"></span></div>
+  </section>
+
+  <!-- ── I. Who we are ──────────────────────────────────── -->
+  <section class="section statement">
+    <div class="wrap">
+      <div class="sechead" data-reveal><span class="lab">Who we are</span><span class="folio">I</span></div>
+      <div class="grid">
+        <p class="big" data-reveal>We help ambitious companies become <strong>stronger, more profitable,</strong> and ready for what comes next.</p>
+        <p class="sub" data-reveal style="--d:120ms">Lincoln Square Consulting pairs senior operators with a pragmatic, hands-on approach. We work alongside your team — from the boardroom to the front line — turning strategy into measurable results.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── II. Expertise ──────────────────────────────────── -->
+  <section class="section services-sec" id="expertise">
+    <div class="wrap">
+      <div class="sechead" data-reveal><span class="lab">Expertise</span><span class="folio">II</span></div>
+      <div class="head">
+        <h2 class="h" data-reveal>Areas of consulting expertise</h2>
+        <p data-reveal style="--d:100ms">Seven disciplines, one integrated team — deployed to fit the problem in front of you.</p>
+      </div>
+
+      <div class="ledger">
+        <div class="row" data-reveal>
+          <span class="r-num">01</span>
+          <span class="r-mark"><svg viewBox="0 0 28 28" aria-hidden="true"><rect data-o x="4" y="4" width="20" height="20"/><rect x="11.5" y="11.5" width="5" height="5" fill="currentColor"/></svg></span>
+          <h3 class="r-name">Advisory Services</h3>
+          <p class="r-desc">Senior, objective counsel on the decisions that shape your trajectory.</p>
+        </div>
+        <div class="row" data-reveal>
+          <span class="r-num">02</span>
+          <span class="r-mark"><svg viewBox="0 0 28 28" aria-hidden="true"><rect data-o x="4" y="4" width="8" height="8"/><rect x="16" y="4" width="8" height="8" fill="currentColor"/><rect data-o x="4" y="16" width="8" height="8"/><rect data-o x="16" y="16" width="8" height="8"/></svg></span>
+          <h3 class="r-name">Strategy &amp; Operating Model</h3>
+          <p class="r-desc">Align strategy, structure, and operations into one coherent engine.</p>
+        </div>
+        <div class="row" data-reveal>
+          <span class="r-num">03</span>
+          <span class="r-mark"><svg viewBox="0 0 28 28" aria-hidden="true"><rect data-o x="4" y="4" width="7" height="7"/><rect x="10.5" y="10.5" width="7" height="7" fill="currentColor"/><rect data-o x="17" y="17" width="7" height="7"/></svg></span>
+          <h3 class="r-name">Technology Management</h3>
+          <p class="r-desc">Govern and modernize technology as a driver of the business.</p>
+        </div>
+        <div class="row" data-reveal>
+          <span class="r-num">04</span>
+          <span class="r-mark"><svg viewBox="0 0 28 28" aria-hidden="true"><rect x="4" y="18" width="6" height="6" fill="currentColor"/><rect x="11" y="11" width="6" height="6" fill="currentColor"/><rect x="18" y="4" width="6" height="6" fill="currentColor"/></svg></span>
+          <h3 class="r-name">Exec Development</h3>
+          <p class="r-desc">Develop leaders and teams equipped for what comes next.</p>
+        </div>
+        <div class="row" data-reveal>
+          <span class="r-num">05</span>
+          <span class="r-mark"><svg viewBox="0 0 28 28" aria-hidden="true"><rect x="11.5" y="11.5" width="5" height="5" fill="currentColor"/><rect data-o x="4" y="4" width="5" height="5"/><rect data-o x="19" y="4" width="5" height="5"/><rect data-o x="4" y="19" width="5" height="5"/><rect data-o x="19" y="19" width="5" height="5"/></svg></span>
+          <h3 class="r-name">Workforce Optimization</h3>
+          <p class="r-desc">Design the roles, skills, and structures that scale.</p>
+        </div>
+        <div class="row" data-reveal>
+          <span class="r-num">06</span>
+          <span class="r-mark"><svg viewBox="0 0 28 28" aria-hidden="true"><rect data-o x="4" y="8" width="8" height="12"/><rect x="16" y="8" width="8" height="12" fill="currentColor"/></svg></span>
+          <h3 class="r-name">Outsourcing &amp; Managed Services</h3>
+          <p class="r-desc">Run non-core functions with rigor, so you can focus on what matters.</p>
+        </div>
+        <div class="row" data-reveal>
+          <span class="r-num">07</span>
+          <span class="r-mark"><svg viewBox="0 0 28 28" aria-hidden="true"><rect x="4" y="4" width="4.5" height="4.5" fill="currentColor"/><rect x="11.75" y="4" width="4.5" height="4.5" fill="currentColor"/><rect x="19.5" y="4" width="4.5" height="4.5" fill="currentColor"/><rect x="4" y="11.75" width="4.5" height="4.5" fill="currentColor"/><rect x="11.75" y="11.75" width="4.5" height="4.5" fill="currentColor"/><rect x="19.5" y="11.75" width="4.5" height="4.5" fill="currentColor"/><rect x="4" y="19.5" width="4.5" height="4.5" fill="currentColor"/><rect x="11.75" y="19.5" width="4.5" height="4.5" fill="currentColor"/><rect x="19.5" y="19.5" width="4.5" height="4.5" fill="currentColor"/></svg></span>
+          <h3 class="r-name">Digital Development &amp; Comms</h3>
+          <p class="r-desc">Build digital products and the communications that carry them.</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <footer class="footer">
-      <div class="subscribe">
-        <div class="sub-label">Subscribe for Updates</div>
-        <form class="form" id="signup">
-          <input type="email" id="email" name="email" placeholder="Email address" required aria-label="Email address" />
-          <button class="btn" type="submit">Sign up</button>
-        </form>
+  <!-- ── III. Approach ──────────────────────────────────── -->
+  <section class="section approach" id="approach">
+    <div class="wrap">
+      <div class="sechead" data-reveal><span class="lab">Approach</span><span class="folio">III</span></div>
+      <h2 class="h" data-reveal>How we work</h2>
+      <div class="steps">
+        <div class="step" data-reveal>
+          <span class="n">1</span>
+          <h4>Diagnose</h4>
+          <p>We start by understanding your business, your market, and the real problem beneath the symptoms.</p>
+        </div>
+        <div class="step" data-reveal style="--d:90ms">
+          <span class="n">2</span>
+          <h4>Design</h4>
+          <p>We shape a pragmatic plan with clear priorities, owners, and measurable outcomes.</p>
+        </div>
+        <div class="step" data-reveal style="--d:180ms">
+          <span class="n">3</span>
+          <h4>Deliver</h4>
+          <p>We work alongside your team to implement — not just advise from the sidelines.</p>
+        </div>
+        <div class="step" data-reveal style="--d:270ms">
+          <span class="n">4</span>
+          <h4>Sustain</h4>
+          <p>We transfer capability so the results outlast the engagement.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── IV. Contact ────────────────────────────────────── -->
+  <section class="section contact-sec" id="contact">
+    <div class="wrap">
+      <div class="sechead" data-reveal><span class="lab">Get in touch</span><span class="folio">IV</span></div>
+      <div data-reveal>
+        <p class="big">Start the conversation.</p>
+        <p class="lead">Tell us what you're working toward — we'll show you how Lincoln Square can help you get there.</p>
+        <a class="btn ghost" href="https://arctouch.com/contact?utm_source=clutch.co&amp;utm_medium=referral_profile&amp;utm_campaign=listings&amp;utm_content=main+link" target="_blank" rel="noopener">Learn More</a>
+      </div>
+
+      <div class="subscribe-row" data-reveal style="--d:120ms">
+        <div class="subscribe">
+          <div class="sub-label">Subscribe for Updates</div>
+          <form class="form" id="signup">
+            <input type="email" id="email" name="email" placeholder="Email address" required aria-label="Email address" />
+            <button class="btn" type="submit">Sign up</button>
+          </form>
+        </div>
         <div class="note" id="note"></div>
       </div>
-      <div class="contact">
-        <span class="k">Inquiries</span>
-        <a href="mailto:info@lincolnsquareconsulting.llc">info@lincolnsquareconsulting.llc</a>
+
+      <div class="foot">
+        <div class="inq">
+          <span class="k">Inquiries</span>
+          <a class="u" href="mailto:info@lincolnsquareconsulting.llc">info@lincolnsquareconsulting.llc</a>
+        </div>
+        <div class="cr">Lincoln Square Consulting, LLC &copy;2026</div>
       </div>
-      <div class="copyright">Lincoln Square Consulting, LLC &copy;2026</div>
-    </footer>
-  </main>
+    </div>
+  </section>
 
   <script>
+    /* nav background on scroll */
     (function () {
-      // TODO: Paste your Google Apps Script Web App URL here after deploying it.
-      // Until then the form acknowledges the visitor but does not store the email.
-      var SCRIPT_URL = '';
+      var nav = document.getElementById('nav');
+      var onScroll = function () { nav.classList.toggle('scrolled', window.scrollY > window.innerHeight * 0.7); };
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+    })();
 
+    /* reveal on scroll */
+    (function () {
+      var items = document.querySelectorAll('[data-reveal]');
+      if (!('IntersectionObserver' in window)) { items.forEach(function (el) { el.classList.add('is-visible'); }); return; }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+      }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+      items.forEach(function (el) { io.observe(el); });
+    })();
+
+    /* subscribe form (acknowledges until a backend URL is set) */
+    (function () {
+      var SCRIPT_URL = '';
       var form = document.getElementById('signup');
       var input = document.getElementById('email');
       var btn = form.querySelector('button');
       var note = document.getElementById('note');
-
-      function onSuccess() {
-        form.classList.add('done');
-        input.value = '';
-        input.placeholder = "You're on the list";
-        btn.textContent = 'Sign up';
-        btn.disabled = false;
-        note.textContent = "Thanks — we'll be in touch when we launch.";
-      }
-
-      function onError() {
-        btn.textContent = 'Sign up';
-        btn.disabled = false;
-        note.textContent = 'Something went wrong — please try again.';
-      }
-
+      function ok() { input.value = ''; input.placeholder = "You're on the list"; btn.textContent = 'Sign up'; btn.disabled = false; note.textContent = "Thanks — we'll be in touch when we launch."; }
+      function err() { btn.textContent = 'Sign up'; btn.disabled = false; note.textContent = 'Something went wrong — please try again.'; }
       form.addEventListener('submit', function (e) {
         e.preventDefault();
         var email = (input.value || '').trim();
-        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-          note.textContent = 'Please enter a valid email address.';
-          input.focus();
-          return;
-        }
-
-        btn.disabled = true;
-        btn.textContent = 'Saving…';
-        note.textContent = '';
-
-        if (!SCRIPT_URL) {
-          onSuccess();
-          return;
-        }
-
-        fetch(SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'text/plain' },
-          body: JSON.stringify({ email: email, timestamp: new Date().toISOString() })
-        })
-        .then(onSuccess)
-        .catch(onError);
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { note.textContent = 'Please enter a valid email address.'; input.focus(); return; }
+        btn.disabled = true; btn.textContent = 'Saving…'; note.textContent = '';
+        if (!SCRIPT_URL) { ok(); return; }
+        fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify({ email: email, timestamp: new Date().toISOString() }) }).then(ok).catch(err);
       });
     })();
   </script>
