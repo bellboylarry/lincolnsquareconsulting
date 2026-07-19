@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <title>Lincoln Square Consulting — New York Advisory Firm</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="Lincoln Square Consulting — we apply over 25 years of experience in financial services technology, consulting and startups to ensure clients operate at optimal efficiency." />
+<meta name="description" content="Lincoln Square Consulting — we apply over 25 years of experience in financial services, consulting and startups to ensure clients operate at optimal efficiency." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300..700&family=Inter:wght@300..600&display=swap" rel="stylesheet">
@@ -105,10 +105,10 @@
   .hero::before {
     content: ""; position: absolute; inset: 0; z-index: 0;
     background:
-      radial-gradient(120% 88% at 50% 33%, rgba(6,9,14,0.30) 0%, rgba(6,9,14,0) 60%),
+      radial-gradient(120% 88% at 50% 33%, rgba(6,9,14,0.18) 0%, rgba(6,9,14,0) 60%),
       linear-gradient(to bottom,
-        rgba(6,9,14,0.52) 0%, rgba(6,9,14,0.36) 26%,
-        rgba(6,9,14,0.34) 55%, rgba(6,9,14,0.52) 100%),
+        rgba(6,9,14,0.38) 0%, rgba(6,9,14,0.22) 26%,
+        rgba(6,9,14,0.20) 55%, rgba(6,9,14,0.40) 100%),
       url("assets/background.jpg") center / cover no-repeat;
   }
   .hero > * { position: relative; z-index: 1; text-shadow: 0 1px 3px rgba(0,0,0,0.32); }
@@ -169,7 +169,7 @@
   .statement .big strong { font-weight: 600; }
 
   /* ── expertise ledger ──────────────────────────────────── */
-  .services-sec { background: var(--paper); }
+  .services-sec { background: var(--paper); padding-top: clamp(44px, 6.5vh, 76px); }
 
   .ledger { border-top: 1px solid var(--hair); }
   .row {
@@ -204,7 +204,7 @@
   .contact-sec::before {
     content: ""; position: absolute; inset: 0; z-index: 0;
     background:
-      linear-gradient(to bottom, rgba(6,9,14,0.82) 0%, rgba(6,9,14,0.9) 100%),
+      linear-gradient(to bottom, rgba(6,9,14,0.74) 0%, rgba(6,9,14,0.84) 100%),
       url("assets/background.jpg") center / cover no-repeat;
   }
   .contact-sec .wrap { position: relative; z-index: 1; }
@@ -212,23 +212,15 @@
     font-family: var(--serif); font-weight: 500; font-size: clamp(30px, 3.8vw, 46px);
     line-height: 1.1; letter-spacing: -0.02em; margin: 0;
   }
-  .cta-line { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
-
-  .btn {
-    display: inline-flex; align-items: center; justify-content: center;
-    font-family: var(--sans); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600;
-    white-space: nowrap; text-decoration: none; cursor: pointer;
-    border: 1px solid var(--white); background: var(--white); color: var(--night);
-    transition: background .18s ease, color .18s ease;
+  .cta-sub {
+    font-family: var(--serif); font-size: clamp(17px, 1.9vw, 21px); line-height: 1.6;
+    color: rgba(255,255,255,0.88); margin: 18px 0 0;
   }
-  .btn:hover { background: transparent; color: var(--white); }
-  a.btn.ghost { background: transparent; color: var(--white); padding: 15px 34px; }
-  a.btn.ghost:hover { background: var(--white); color: var(--night); }
+  .cta-sub a { color: var(--white); }
 
-  .foot { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+  .foot { display: flex; align-items: center; justify-content: center;
     margin-top: clamp(56px, 8vw, 88px); padding-top: 26px; border-top: 1px solid var(--hair-dk); }
-  .foot .inq { font-family: var(--sans); font-size: 14px; color: rgba(255,255,255,0.78); }
-  .foot .cr { font-family: var(--sans); font-size: 12px; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); }
+  .foot .cr { font-family: var(--sans); font-size: 12px; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); text-align: center; }
 
   /* ── reveal on scroll ──────────────────────────────────── */
   [data-reveal] { opacity: 0; transform: translateY(16px); transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); transition-delay: var(--d, 0ms); }
@@ -250,7 +242,6 @@
     .row { grid-template-columns: 44px 1fr; }
     .steps { grid-template-columns: 1fr; }
     .step:nth-child(even) { border-left: none; padding-left: 0; }
-    .foot { flex-direction: column; align-items: flex-start; }
   }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
@@ -287,7 +278,7 @@
   <section class="section statement">
     <div class="wrap">
       <div class="sechead" data-reveal><span class="lab">Who we are</span><span class="folio">I</span></div>
-      <p class="big" data-reveal>We apply over <strong>25 years of experience</strong> in financial services technology, consulting and startups to ensure clients operate at optimal efficiency.</p>
+      <p class="big" data-reveal>We apply over <strong>25 years of experience</strong> in financial services, consulting and startups to ensure clients operate at optimal efficiency.</p>
     </div>
   </section>
 
@@ -369,13 +360,12 @@
   <!-- ── IV. Contact ────────────────────────────────────── -->
   <section class="section contact-sec" id="contact">
     <div class="wrap">
-      <div class="cta-line" data-reveal>
+      <div data-reveal>
         <p class="big">We'd love to hear about your business!</p>
-        <a class="btn ghost" href="contact.html">Contact Us</a>
+        <p class="cta-sub">Please <a class="u" href="contact.html">click here</a> or email us at <a class="u" href="mailto:info@lincolnsquareconsulting.llc">info@lincolnsquareconsulting.llc</a>.</p>
       </div>
 
       <div class="foot">
-        <div class="inq">Email: <a class="u" href="mailto:info@lincolnsquareconsulting.llc">info@lincolnsquareconsulting.llc</a></div>
         <div class="cr">&copy;2026 Lincoln Square Consulting, LLC &mdash; New York, NY</div>
       </div>
     </div>
