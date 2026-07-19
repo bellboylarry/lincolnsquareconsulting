@@ -10,6 +10,7 @@
 # Working photo libraries and generated prospect mockups
 /background photos /
 /background prospects/
+/client review/
 
 # Only the background actually used by index.html is published
 /assets/*
