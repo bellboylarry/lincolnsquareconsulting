@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <title>Lincoln Square Consulting — New York Advisory Firm</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="Lincoln Square Consulting — a New York City-based advisory firm helping global companies become stronger, more profitable, and ready for what comes next." />
+<meta name="description" content="Lincoln Square Consulting — we apply over 25 years of experience in financial services technology, consulting and startups to ensure clients operate at optimal efficiency." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300..700&family=Inter:wght@300..600&display=swap" rel="stylesheet">
@@ -67,7 +67,7 @@
   /* ── nav ───────────────────────────────────────────────── */
   .nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 70;
-    display: flex; align-items: center; justify-content: space-between;
+    display: flex; align-items: center; justify-content: flex-end;
     padding: 22px clamp(24px, 6vw, 96px);
     color: var(--white);
     transition: background .45s ease, color .45s ease, padding .45s ease, border-color .45s ease;
@@ -80,14 +80,6 @@
     padding: 14px clamp(24px, 6vw, 96px);
     border-bottom-color: var(--hair);
   }
-  .nav .mark {
-    display: inline-flex; align-items: center; gap: 14px;
-    font-family: var(--sans);
-    font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 500;
-    white-space: nowrap;
-  }
-  .nav .mark::before { content: ""; width: 7px; height: 7px; background: var(--bronze-lite); flex-shrink: 0; }
-  .nav.scrolled .mark::before { background: var(--bronze); }
   .nav .links { display: flex; gap: clamp(20px, 3vw, 40px); }
   .nav .links a {
     font-family: var(--sans);
@@ -120,12 +112,6 @@
       url("assets/background.jpg") center / cover no-repeat;
   }
   .hero > * { position: relative; z-index: 1; text-shadow: 0 1px 3px rgba(0,0,0,0.32); }
-  .hero .kicker {
-    display: inline-flex; align-items: center; gap: 12px;
-    font-family: var(--sans); font-size: 12px; letter-spacing: 0.34em; text-transform: uppercase;
-    color: rgba(255,255,255,0.74); margin: 0 0 26px;
-  }
-  .hero .kicker::before, .hero .kicker::after { content: ""; width: 5px; height: 5px; background: var(--bronze-lite); }
   .hero h1 {
     font-family: var(--sans); font-weight: 500; text-transform: uppercase;
     white-space: nowrap; line-height: 1.1; margin: 0;
@@ -151,28 +137,44 @@
   }
   @keyframes drop { 0% { transform: translateY(0); opacity: 0; } 18% { opacity: 1; } 82% { opacity: 1; } 100% { transform: translateY(41px); opacity: 0; } }
 
+  /* hero base row — © left / New York right, edges aligned to the wordmark
+     (the invisible .ghost repeats the h1's type metrics to set the exact width) */
+  .hero-base {
+    position: absolute; left: 50%; bottom: 34px; transform: translateX(-50%);
+    z-index: 1; width: max-content;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.32);
+  }
+  .hero-base .ghost {
+    font-family: var(--sans); font-weight: 500; text-transform: uppercase;
+    white-space: nowrap; letter-spacing: 0.34em; margin-right: -0.34em;
+    font-size: clamp(13px, 3.4vw, 46px);
+    height: 0; overflow: hidden; visibility: hidden;
+  }
+  .hero-base .baserow {
+    display: flex; justify-content: space-between; align-items: flex-end; gap: 28px;
+    font-family: var(--sans); font-size: 12px; letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.74); white-space: nowrap;
+  }
+  @media (max-width: 720px) {
+    .hero-base { width: calc(100vw - 48px); }
+    .hero-base .baserow { font-size: 10.5px; }
+  }
+
   /* ── statement ─────────────────────────────────────────── */
   .statement { background: var(--paper); padding-bottom: clamp(40px, 6vh, 68px); }
-  .statement .grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(30px, 6vw, 80px); align-items: baseline; }
   .statement .big {
     font-family: var(--serif); font-weight: 400; letter-spacing: -0.015em;
-    font-size: clamp(28px, 4vw, 50px); line-height: 1.16; margin: 0; max-width: 20ch;
+    font-size: clamp(26px, 3.6vw, 44px); line-height: 1.22; margin: 0; max-width: 30ch;
   }
   .statement .big strong { font-weight: 600; }
-  .statement .sub {
-    font-family: var(--serif); font-size: clamp(17px, 1.7vw, 20px); line-height: 1.7;
-    color: #45443f; max-width: 46ch; margin: 0;
-  }
 
   /* ── expertise ledger ──────────────────────────────────── */
   .services-sec { background: var(--paper); }
-  .services-sec .head { display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; flex-wrap: wrap; margin-bottom: clamp(38px, 5vw, 58px); }
-  .services-sec .head p { font-family: var(--serif); color: var(--muted); max-width: 34ch; margin: 12px 0 0; font-size: 16px; line-height: 1.6; }
 
   .ledger { border-top: 1px solid var(--hair); }
   .row {
     display: grid;
-    grid-template-columns: 64px 72px 1fr 1.15fr;
+    grid-template-columns: 64px 72px 1fr;
     align-items: center;
     gap: 0 clamp(18px, 3vw, 40px);
     padding: 26px 0;
@@ -186,7 +188,6 @@
   .r-mark svg { width: 30px; height: 30px; }
   .r-mark rect[data-o] { fill: none; stroke: currentColor; stroke-width: 1.5; }
   .r-name { font-family: var(--serif); font-weight: 500; font-size: clamp(19px, 1.9vw, 24px); letter-spacing: -0.01em; margin: 0; }
-  .r-desc { font-family: var(--serif); font-size: 15.5px; line-height: 1.6; color: var(--muted); margin: 0; }
 
   /* ── approach ──────────────────────────────────────────── */
   .approach { background: var(--paper-2); }
@@ -207,14 +208,11 @@
       url("assets/background.jpg") center / cover no-repeat;
   }
   .contact-sec .wrap { position: relative; z-index: 1; }
-  .contact-sec .sechead { border-top-color: var(--hair-dk); }
-  .contact-sec .sechead .lab { color: rgba(255,255,255,0.62); }
-  .contact-sec .sechead .folio { color: var(--bronze-lite); }
   .contact-sec .big {
-    font-family: var(--serif); font-weight: 500; font-size: clamp(34px, 5vw, 58px);
-    line-height: 1.05; letter-spacing: -0.02em; margin: 0 0 14px; max-width: 18ch;
+    font-family: var(--serif); font-weight: 500; font-size: clamp(30px, 3.8vw, 46px);
+    line-height: 1.1; letter-spacing: -0.02em; margin: 0;
   }
-  .contact-sec .lead { font-family: var(--serif); font-size: clamp(17px, 1.7vw, 20px); color: rgba(255,255,255,0.84); max-width: 46ch; margin: 0 0 44px; line-height: 1.6; }
+  .cta-line { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
 
   .btn {
     display: inline-flex; align-items: center; justify-content: center;
@@ -227,26 +225,9 @@
   a.btn.ghost { background: transparent; color: var(--white); padding: 15px 34px; }
   a.btn.ghost:hover { background: var(--white); color: var(--night); }
 
-  .subscribe-row { display: flex; align-items: center; justify-content: space-between; gap: 36px; flex-wrap: wrap;
-    margin-top: 52px; padding-top: 34px; border-top: 1px solid var(--hair-dk); }
-  .subscribe { display: flex; align-items: center; gap: clamp(16px, 2.5vw, 30px); flex: 1 1 440px; }
-  .subscribe .sub-label { font-family: var(--serif); font-size: clamp(22px, 2.6vw, 30px); color: var(--white); white-space: nowrap; }
-  .form { display: flex; align-items: stretch; flex: 1 1 auto; max-width: 460px; }
-  .form input {
-    flex: 1 1 auto; min-width: 0; height: 52px; padding: 0 16px;
-    border: 1px solid rgba(255,255,255,0.5); border-right: none;
-    background: rgba(255,255,255,0.08); color: var(--white); font-family: var(--sans); font-size: 15px; outline: none;
-    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
-  }
-  .form input::placeholder { color: rgba(255,255,255,0.6); }
-  .form input:focus { border-color: var(--white); background: rgba(255,255,255,0.14); }
-  .form .btn { height: 52px; padding: 0 26px; }
-  .note { font-family: var(--sans); font-size: 12.5px; color: rgba(255,255,255,0.7); min-height: 15px; margin-top: 12px; flex-basis: 100%; }
-
   .foot { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
-    margin-top: 56px; padding-top: 26px; border-top: 1px solid var(--hair-dk); }
+    margin-top: clamp(56px, 8vw, 88px); padding-top: 26px; border-top: 1px solid var(--hair-dk); }
   .foot .inq { font-family: var(--sans); font-size: 14px; color: rgba(255,255,255,0.78); }
-  .foot .inq .k { display: block; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 4px; }
   .foot .cr { font-family: var(--sans); font-size: 12px; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); }
 
   /* ── reveal on scroll ──────────────────────────────────── */
@@ -255,11 +236,10 @@
 
   /* ── responsive ────────────────────────────────────────── */
   @media (max-width: 960px) {
-    .row { grid-template-columns: 52px 1fr 1.15fr; }
+    .row { grid-template-columns: 52px 1fr; }
     .r-num { display: none; }
   }
   @media (max-width: 860px) {
-    .statement .grid { grid-template-columns: 1fr; align-items: start; }
     .steps { grid-template-columns: 1fr 1fr; border-top: none; }
     .step { border-top: 1px solid #cfc6b3; padding: 26px 20px 6px 0; }
     .step + .step { border-left: none; padding-left: 0; }
@@ -267,12 +247,9 @@
   }
   @media (max-width: 640px) {
     .nav .links { display: none; }
-    .row { grid-template-columns: 44px 1fr; row-gap: 6px; }
-    .r-desc { grid-column: 2; }
+    .row { grid-template-columns: 44px 1fr; }
     .steps { grid-template-columns: 1fr; }
     .step:nth-child(even) { border-left: none; padding-left: 0; }
-    .subscribe { flex-direction: column; align-items: flex-start; gap: 14px; flex-basis: auto; width: 100%; }
-    .form { max-width: none; width: 100%; }
     .foot { flex-direction: column; align-items: flex-start; }
   }
   @media (prefers-reduced-motion: reduce) {
@@ -285,7 +262,6 @@
 <body>
 
   <header class="nav" id="nav">
-    <span class="mark">Lincoln Square Consulting</span>
     <nav class="links">
       <a href="#expertise">Expertise</a>
       <a href="#approach">Approach</a>
@@ -295,74 +271,66 @@
 
   <!-- ── Hero ───────────────────────────────────────────── -->
   <section class="hero">
-    <p class="kicker">New York City</p>
     <h1><span>Lincoln Square Consulting</span></h1>
     <p class="tagline">An advisory firm helping global companies achieve optimal results</p>
     <div class="scrollcue"><span>Scroll</span><span class="line"></span></div>
+    <div class="hero-base">
+      <div class="ghost" aria-hidden="true">Lincoln Square Consulting</div>
+      <div class="baserow">
+        <span>&copy;2026 Lincoln Square Consulting, LLC.</span>
+        <span>New York, NY</span>
+      </div>
+    </div>
   </section>
 
   <!-- ── I. Who we are ──────────────────────────────────── -->
   <section class="section statement">
     <div class="wrap">
       <div class="sechead" data-reveal><span class="lab">Who we are</span><span class="folio">I</span></div>
-      <div class="grid">
-        <p class="big" data-reveal>We help ambitious companies become <strong>stronger, more profitable,</strong> and ready for what comes next.</p>
-        <p class="sub" data-reveal style="--d:120ms">Lincoln Square Consulting pairs senior operators with a pragmatic, hands-on approach. We work alongside your team — from the boardroom to the front line — turning strategy into measurable results.</p>
-      </div>
+      <p class="big" data-reveal>We apply over <strong>25 years of experience</strong> in financial services technology, consulting and startups to ensure clients operate at optimal efficiency.</p>
     </div>
   </section>
 
-  <!-- ── II. Expertise ──────────────────────────────────── -->
+  <!-- ── II. Areas of expertise ─────────────────────────── -->
   <section class="section services-sec" id="expertise">
     <div class="wrap">
-      <div class="sechead" data-reveal><span class="lab">Expertise</span><span class="folio">II</span></div>
-      <div class="head">
-        <h2 class="h" data-reveal>Areas of consulting expertise</h2>
-        <p data-reveal style="--d:100ms">Seven disciplines, one integrated team — deployed to fit the problem in front of you.</p>
-      </div>
+      <div class="sechead" data-reveal><span class="lab">Areas of Expertise</span><span class="folio">II</span></div>
 
       <div class="ledger">
         <div class="row" data-reveal>
           <span class="r-num">01</span>
           <span class="r-mark"><svg viewBox="0 0 28 28" aria-hidden="true"><rect data-o x="4" y="4" width="20" height="20"/><rect x="11.5" y="11.5" width="5" height="5" fill="currentColor"/></svg></span>
           <h3 class="r-name">Advisory Services</h3>
-          <p class="r-desc">Senior, objective counsel on the decisions that shape your trajectory.</p>
         </div>
         <div class="row" data-reveal>
           <span class="r-num">02</span>
           <span class="r-mark"><svg viewBox="0 0 28 28" aria-hidden="true"><rect data-o x="4" y="4" width="8" height="8"/><rect x="16" y="4" width="8" height="8" fill="currentColor"/><rect data-o x="4" y="16" width="8" height="8"/><rect data-o x="16" y="16" width="8" height="8"/></svg></span>
           <h3 class="r-name">Strategy &amp; Operating Model</h3>
-          <p class="r-desc">Align strategy, structure, and operations into one coherent engine.</p>
         </div>
         <div class="row" data-reveal>
           <span class="r-num">03</span>
           <span class="r-mark"><svg viewBox="0 0 28 28" aria-hidden="true"><rect data-o x="4" y="4" width="7" height="7"/><rect x="10.5" y="10.5" width="7" height="7" fill="currentColor"/><rect data-o x="17" y="17" width="7" height="7"/></svg></span>
           <h3 class="r-name">Technology Management</h3>
-          <p class="r-desc">Govern and modernize technology as a driver of the business.</p>
         </div>
         <div class="row" data-reveal>
           <span class="r-num">04</span>
           <span class="r-mark"><svg viewBox="0 0 28 28" aria-hidden="true"><rect x="4" y="18" width="6" height="6" fill="currentColor"/><rect x="11" y="11" width="6" height="6" fill="currentColor"/><rect x="18" y="4" width="6" height="6" fill="currentColor"/></svg></span>
           <h3 class="r-name">Exec Development</h3>
-          <p class="r-desc">Develop leaders and teams equipped for what comes next.</p>
         </div>
         <div class="row" data-reveal>
           <span class="r-num">05</span>
           <span class="r-mark"><svg viewBox="0 0 28 28" aria-hidden="true"><rect x="11.5" y="11.5" width="5" height="5" fill="currentColor"/><rect data-o x="4" y="4" width="5" height="5"/><rect data-o x="19" y="4" width="5" height="5"/><rect data-o x="4" y="19" width="5" height="5"/><rect data-o x="19" y="19" width="5" height="5"/></svg></span>
           <h3 class="r-name">Workforce Optimization</h3>
-          <p class="r-desc">Design the roles, skills, and structures that scale.</p>
         </div>
         <div class="row" data-reveal>
           <span class="r-num">06</span>
           <span class="r-mark"><svg viewBox="0 0 28 28" aria-hidden="true"><rect data-o x="4" y="8" width="8" height="12"/><rect x="16" y="8" width="8" height="12" fill="currentColor"/></svg></span>
           <h3 class="r-name">Outsourcing &amp; Managed Services</h3>
-          <p class="r-desc">Run non-core functions with rigor, so you can focus on what matters.</p>
         </div>
         <div class="row" data-reveal>
           <span class="r-num">07</span>
           <span class="r-mark"><svg viewBox="0 0 28 28" aria-hidden="true"><rect x="4" y="4" width="4.5" height="4.5" fill="currentColor"/><rect x="11.75" y="4" width="4.5" height="4.5" fill="currentColor"/><rect x="19.5" y="4" width="4.5" height="4.5" fill="currentColor"/><rect x="4" y="11.75" width="4.5" height="4.5" fill="currentColor"/><rect x="11.75" y="11.75" width="4.5" height="4.5" fill="currentColor"/><rect x="19.5" y="11.75" width="4.5" height="4.5" fill="currentColor"/><rect x="4" y="19.5" width="4.5" height="4.5" fill="currentColor"/><rect x="11.75" y="19.5" width="4.5" height="4.5" fill="currentColor"/><rect x="19.5" y="19.5" width="4.5" height="4.5" fill="currentColor"/></svg></span>
           <h3 class="r-name">Digital Development &amp; Comms</h3>
-          <p class="r-desc">Build digital products and the communications that carry them.</p>
         </div>
       </div>
     </div>
@@ -376,23 +344,23 @@
       <div class="steps">
         <div class="step" data-reveal>
           <span class="n">1</span>
-          <h4>Diagnose</h4>
-          <p>We start by understanding your business, your market, and the real problem beneath the symptoms.</p>
+          <h4>Requirements</h4>
+          <p>Client engagements begin by gaining a complete understanding of your current state, what needs to be achieved and potential challenges.</p>
         </div>
         <div class="step" data-reveal style="--d:90ms">
           <span class="n">2</span>
-          <h4>Design</h4>
-          <p>We shape a pragmatic plan with clear priorities, owners, and measurable outcomes.</p>
+          <h4>Planning</h4>
+          <p>Collaborating with you to construct a plan that details activities, resource required, timeline and measurable outcomes.</p>
         </div>
         <div class="step" data-reveal style="--d:180ms">
           <span class="n">3</span>
-          <h4>Deliver</h4>
-          <p>We work alongside your team to implement — not just advise from the sidelines.</p>
+          <h4>Delivery</h4>
+          <p>Implementing the plan can be achieved by working aside your team and/or advising as needed.</p>
         </div>
         <div class="step" data-reveal style="--d:270ms">
           <span class="n">4</span>
-          <h4>Sustain</h4>
-          <p>We transfer capability so the results outlast the engagement.</p>
+          <h4>Capability</h4>
+          <p>Ensuring your team develops new capabilities that may be required for longer term success.</p>
         </div>
       </div>
     </div>
@@ -401,30 +369,14 @@
   <!-- ── IV. Contact ────────────────────────────────────── -->
   <section class="section contact-sec" id="contact">
     <div class="wrap">
-      <div class="sechead" data-reveal><span class="lab">Get in touch</span><span class="folio">IV</span></div>
-      <div data-reveal>
-        <p class="big">Start the conversation.</p>
-        <p class="lead">Tell us what you're working toward — we'll show you how Lincoln Square can help you get there.</p>
+      <div class="cta-line" data-reveal>
+        <p class="big">We'd love to hear about your business!</p>
         <a class="btn ghost" href="contact.html">Contact Us</a>
       </div>
 
-      <div class="subscribe-row" data-reveal style="--d:120ms">
-        <div class="subscribe">
-          <div class="sub-label">Subscribe for Updates</div>
-          <form class="form" id="signup">
-            <input type="email" id="email" name="email" placeholder="Email address" required aria-label="Email address" />
-            <button class="btn" type="submit">Sign up</button>
-          </form>
-        </div>
-        <div class="note" id="note"></div>
-      </div>
-
       <div class="foot">
-        <div class="inq">
-          <span class="k">Inquiries</span>
-          <a class="u" href="mailto:info@lincolnsquareconsulting.llc">info@lincolnsquareconsulting.llc</a>
-        </div>
-        <div class="cr">Lincoln Square Consulting, LLC &copy;2026</div>
+        <div class="inq">Email: <a class="u" href="mailto:info@lincolnsquareconsulting.llc">info@lincolnsquareconsulting.llc</a></div>
+        <div class="cr">&copy;2026 Lincoln Square Consulting, LLC &mdash; New York, NY</div>
       </div>
     </div>
   </section>
@@ -446,25 +398,6 @@
         entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
       }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
       items.forEach(function (el) { io.observe(el); });
-    })();
-
-    /* subscribe form (acknowledges until a backend URL is set) */
-    (function () {
-      var SCRIPT_URL = '';
-      var form = document.getElementById('signup');
-      var input = document.getElementById('email');
-      var btn = form.querySelector('button');
-      var note = document.getElementById('note');
-      function ok() { input.value = ''; input.placeholder = "You're on the list"; btn.textContent = 'Sign up'; btn.disabled = false; note.textContent = "Thanks — we'll be in touch when we launch."; }
-      function err() { btn.textContent = 'Sign up'; btn.disabled = false; note.textContent = 'Something went wrong — please try again.'; }
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        var email = (input.value || '').trim();
-        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { note.textContent = 'Please enter a valid email address.'; input.focus(); return; }
-        btn.disabled = true; btn.textContent = 'Saving…'; note.textContent = '';
-        if (!SCRIPT_URL) { ok(); return; }
-        fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify({ email: email, timestamp: new Date().toISOString() }) }).then(ok).catch(err);
-      });
     })();
   </script>
 </body>
